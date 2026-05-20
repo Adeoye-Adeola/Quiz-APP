@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>UniQuiz</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="style.css">
+<style>
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="nav-logo">Uni<span>Quiz</span></div>
+  <div class="nav-links">
+    <a href="#" onclick="goHome()">Home</a>
+    <a href="courses.html">Courses</a>
+    <a href="#about">About</a>
+  </div>
+</nav>
+
+<!-- ═══════════ LANDING ═══════════ -->
+<div class="screen active" id="landing">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-tag">University Assessment Platform</div>
+    <h1>Test What You<br><em>Actually</em> Know</h1>
+    <p>Practice your university course materials with structured quizzes. Answer all questions, then review your full scoresheet at the end.</p>
+    <button class="hero-cta" onclick="document.getElementById('courses').scrollIntoView({behavior:'smooth'})">Browse Courses</button>
+    
+  </section>
+
+  <!-- Courses -->
+  <section class="courses-section" id="courses">
+    <div class="section-label">Available Quizzes</div>
+    <h2 class="section-title">Choose Your Course</h2>
+    <div class="courses-grid">
+
+      <div class="course-card" onclick="startQuiz('csc204')">
+        <div class="course-code">CSC 204</div>
+        <div class="course-name">System Analysis and Design</div>
+        <div class="course-meta">30 questions covering systems, SDLC models, analyst roles, requirements gathering, and UML diagrams.</div>
+        <button class="course-btn">Start Quiz &rarr;</button>
+      </div>
+
+      <div class="course-card" onclick="startQuiz('sen264')">
+        <div class="course-code">SEN 264</div>
+        <div class="course-name">Software Engineering</div>
+        <div class="course-meta">30 questions on software engineering principles, processes, design, and quality assurance.</div>
+        <button class="course-btn">Start Quiz &rarr;</button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="about-section" id="about">
+    <div class="section-label">About UniQuiz</div>
+    <h2 class="section-title" style="margin-bottom:1.5rem;">Built for Students</h2>
+    <p>UniQuiz is a clean, distraction-free quiz platform designed to help university students practice and self-assess. No timers, no pressure — just you and the questions. At the end, you get a full breakdown of every answer.</p>
+  </section>
+
+  <footer>
+    &copy; 2025 UniQuiz &mdash; By ADEOYE ADEOLA ISRAEL
+    
+  </footer>
+</div>
+
+<!-- ═══════════ NAME SCREEN ═══════════ -->
+<div class="screen" id="name-screen">
+  <div style="padding-top:64px; min-height:100vh; background:var(--off); display:flex; align-items:center; justify-content:center; padding-left:1rem; padding-right:1rem;">
+    <div class="name-box">
+      <h2>Before You Begin</h2>
+      <p>Enter your name so we can personalise your scoresheet.</p>
+      <input type="text" id="student-name" placeholder="Your full name" maxlength="60" />
+      <button class="btn-dark" onclick="proceedToQuiz()">Start Quiz</button>
+      <div class="back-link" onclick="goHome()">Go back</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ QUIZ SCREEN ═══════════ -->
+<div class="screen" id="quiz-screen">
+  <div class="quiz-container">
+    <div class="quiz-top">
+      <div class="quiz-course-tag" id="quiz-course-tag">CSC 204</div>
+      <div class="quiz-progress-text">Question <span id="q-current">1</span> of <span id="q-total">30</span></div>
+    </div>
+    <div class="progress-bar-wrap">
+      <div class="progress-bar-fill" id="progress-fill" style="width:0%"></div>
+    </div>
+    <div class="question-num" id="q-num-label">Question 1</div>
+    <div class="question-text" id="q-text">Loading...</div>
+    <div class="options-list" id="options-list"></div>
+    <div class="nav-buttons">
+      <button class="btn-outline" id="prev-btn" onclick="prevQuestion()" disabled>Previous</button>
+      <button class="btn-solid" id="next-btn" onclick="nextQuestion()">Next</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ RESULTS SCREEN ═══════════ -->
+<div class="screen" id="results-screen">
+  <div class="results-container">
+    <div class="results-hero">
+      <div class="results-name" id="r-name">Student Name</div>
+      <div class="results-score-big" id="r-score">0/30</div>
+      <div class="results-score-sub" id="r-pct">0% correct</div>
+      <span class="results-verdict" id="r-verdict">Pass</span>
+    </div>
+    <div class="scoresheet-title">Full Scoresheet</div>
+    <div class="scoresheet" id="scoresheet"></div>
+    <div class="results-actions">
+      <button class="btn-outline" onclick="goHome()">Back to Home</button>
+      <button class="btn-solid" id="retake-btn" onclick="retakeQuiz()">Retake Quiz</button>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
